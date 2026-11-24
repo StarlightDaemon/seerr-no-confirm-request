@@ -26,16 +26,14 @@ A userscript for [Seerr](https://github.com/seerr-team/seerr). Click a poster's 
 
 ## Install
 
-Remove any old **Seerr Quick Request** script first (0.2.0 or earlier). The name changed, so it would otherwise show up as a second script, and it no longer updates.
-
 **Option A: one-click install (gets updates).** Open the link below. Your userscript manager should offer to install it; confirm.
 
 <https://github.com/StarlightDaemon/seerr-no-confirm-request/releases/latest/download/seerr-no-confirm-request.user.js>
 
 **Option B: copy and paste.** Use this if your browser or an add-on (an ad blocker with a userscript feature, for example) treats `.user.js` links as installs and you would rather read the code first.
 
-1. Open the file as plain text on GitHub: <https://github.com/StarlightDaemon/seerr-no-confirm-request/blob/main/seerr-no-confirm-request.user.js>
-2. Click **Copy raw file** (the copy icon above the code).
+1. Open the raw script, which your browser shows as plain text: <https://raw.githubusercontent.com/StarlightDaemon/seerr-no-confirm-request/main/seerr-no-confirm-request.user.js>
+2. Select all (Ctrl+A) and copy (Ctrl+C).
 3. In your userscript manager, create a new script, replace its contents with what you copied, and save.
 
 A pasted copy only updates when you paste a newer one. Delete it before switching to Option A.
@@ -45,7 +43,7 @@ A pasted copy only updates when you paste a newer one. Delete it before switchin
 The script does not know where your Seerr lives, so it ships with Seerr's default address, `http://localhost:5055/*`, as a placeholder. Tell your userscript manager your real address once:
 
 1. Open the script's **Settings** in the manager (in Violentmonkey: dashboard, then the script's edit button, then **Settings**).
-2. Under **Custom match** (Violentmonkey labels it **Custom @match**), add your address ending in `/*`, for example `http://192.168.1.50:5055/*` or `https://seerr.example.com/*`. Use the exact scheme, host and port you type in the browser.
+2. Under **Custom match** (Violentmonkey labels it `Custom @match`), add your address ending in `/*`, for example `http://192.168.1.50:5055/*` or `https://seerr.example.com/*`. Use the exact scheme, host and port you type in the browser.
 3. Reload Seerr.
 
 This override is kept across script updates. Do not edit the `@match` line in the script itself, because an update would overwrite it. If the script never seems to run, a wrong Custom match is the usual cause.
@@ -98,7 +96,7 @@ Set `CONFIG.debug = true` to log decisions and HTTP status codes to the browser 
 
 ## Rollback
 
-In your userscript manager, disable or delete **Seerr No-Confirm Request** (formerly Seerr Quick Request), then reload Seerr. Requests that were already submitted remain, and are handled by Seerr and Radarr as usual.
+In your userscript manager, disable or delete **Seerr No-Confirm Request**, then reload Seerr. Requests that were already submitted remain, and are handled by Seerr and Radarr as usual.
 
 ## Development
 
