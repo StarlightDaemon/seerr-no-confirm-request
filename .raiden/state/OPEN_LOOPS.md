@@ -2,9 +2,11 @@
 
 ## LOOP-001 - Operator live acceptance tests
 
-Run README acceptance tests 6, 7, 8 and 10-16 on the current release (0.3.0 once published) against the live Seerr, with Custom match set to the server address. Step-by-step checklist: `docs/LOOP-001-live-test-checklist.md`. Series one-click and the version guard have only been verified against the mock DOM.
+Run README acceptance tests 6, 7, 8 and 10-16 on the current release against the live Seerr, with Custom match set to the server address. Step-by-step checklist: `docs/LOOP-001-live-test-checklist.md`.
 
-- Status: open
+Closed 2026-11-24: the operator ran the live checklist and reported that the tool works as expected. Per-test results were not itemised.
+
+- Status: closed
 - Gate: operator
 
 ## LOOP-002 - Branch protection decision
