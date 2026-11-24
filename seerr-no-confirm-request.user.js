@@ -1,9 +1,11 @@
 // ==UserScript==
 // @name         Seerr No-Confirm Request
 // @namespace    skynet.homelab
-// @version      0.2.2
+// @version      0.3.0
 // @description  One-click movie and series requests from Seerr poster cards. Shift+Click opens the native dialog.
-// @match        http://192.168.1.229:5055/*
+// Placeholder: Seerr's default address. Set your own server under this script's Settings > Custom match in
+// your userscript manager (the override survives updates). Do not edit this line.
+// @match        http://localhost:5055/*
 // @grant        none
 // @inject-into  page
 // @run-at       document-start
@@ -18,6 +20,8 @@
  * Target: Seerr 3.5.x (TitleCard / POST /api/v1/request verified against upstream v3.5.2 source).
  *
  * How it works:
+ *  - It runs only on the addresses the userscript manager matches (see @match above); there is no
+ *    origin setting in the script itself.
  *  - On page load, one GET /api/v1/status. Outside the tested version range the script stands down
  *    (native behaviour) and says so once per browser session.
  *  - A capture-phase click listener on window sees clicks before React. It acts only on the Request
@@ -39,7 +43,6 @@
 
   // ---- Configuration -------------------------------------------------------
   const CONFIG = {
-    origin: 'http://192.168.1.229:5055',
     testedVersion: /^3\.5\.\d+$/, // stand down on anything else
     tv: {
       enabled: true,
@@ -54,8 +57,6 @@
   const CARD_SELECTOR = '[data-testid="title-card"]';
   const MEDIA_HREF = /^\/(movie|tv)\/(\d+)$/;
   const REQUEST_STATUS = { PENDING: 1, APPROVED: 2 };
-
-  if (location.origin !== CONFIG.origin) return;
 
   const log = (...args) => {
     if (CONFIG.debug) console.debug('[SeerrNoConfirmRequest]', ...args);

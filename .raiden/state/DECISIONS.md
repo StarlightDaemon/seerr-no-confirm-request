@@ -38,6 +38,10 @@ New @name, file name and update URLs. @namespace is unchanged. Releases keep a s
 
 Operator direction: delete the v0.2.0 and v0.2.1 GitHub releases and remove the legacy `seerr-quick-request.user.js` asset from v0.2.2. Git tags v0.2.0 to v0.2.2 are kept. Consequence: an install from 0.2.0 or earlier stops receiving updates (its update URL now returns 404) and must be reinstalled from the new URL. Releases from now on attach only `seerr-no-confirm-request.user.js`.
 
+## 2026-11-23 - No hard-coded origin (0.3.0)
+
+Removed `CONFIG.origin` and the origin check. `@match` ships as the placeholder `http://localhost:5055/*` (Seerr's default port) and users set their own address with the userscript manager's Custom match override, which survives updates (edits to the script do not). A broad `@match` was rejected: it would run on every site and call `/api/v1/status` on each. The `/api/v1/status` version guard remains the check that the page really is a supported Seerr. Old Git history still contains the author's private LAN address; history was not rewritten.
+
 ## 2026-11-23 - Naming rationale
 
 The name Seerr Quick Request scored lowest in a conflict review against existing tooling (0/10), and its acronym, SQR, 1/10. Seerr No-Confirm Request is the current top choice. It also says what the script does: it removes the confirmation dialog.

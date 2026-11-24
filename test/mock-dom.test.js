@@ -29,7 +29,7 @@ const seasons = (n, { specials = true, unaired = 0 } = {}) => [
  * opts.requests: queue of responses for POST /api/v1/request
  */
 async function setup(opts = {}) {
-  const { origin = 'http://192.168.1.229:5055', version = '3.5.2', tv = {}, requests = [], cookie = '' } = opts;
+  const { origin = 'http://localhost:5055', version = '3.5.2', tv = {}, requests = [], cookie = '' } = opts;
   const dom = new JSDOM(
     `<!doctype html><html><head></head><body><div id="__next">
       ${card('movie', 101)}${card('tv', 202)}${card('collection', 303)}${card('movie', 404)}${card('tv', 505)}
@@ -238,12 +238,12 @@ const tests = {
     assert.strictEqual(posts().length, 0);
     assert.strictEqual(reactSeen.length, 1);
   },
-  async 'does nothing on another origin'() {
-    const { w, calls, reactSeen } = await setup({ origin: 'http://example.com' });
+  async 'works on any origin the manager matches (no hard-coded address)'() {
+    const { w, posts, reactSeen } = await setup({ origin: 'https://requests.example.org', requests: [ok()] });
     click(w, btn(w, 'movie', 101));
     await tick();
-    assert.strictEqual(calls.length, 0, 'no requests at all, not even status');
-    assert.strictEqual(reactSeen.length, 1);
+    assert.strictEqual(posts().length, 1);
+    assert.strictEqual(reactSeen.length, 0, 'click leaked to React');
   },
 
   // ---- version guard ----
@@ -266,7 +266,7 @@ const tests = {
   },
   async 'guard: clicks before the check answers stay native'() {
     const dom = new JSDOM(`<!doctype html><body><div id="__next">${card('movie', 101)}</div></body>`,
-      { url: 'http://192.168.1.229:5055/', runScripts: 'outside-only' });
+      { url: 'http://localhost:5055/', runScripts: 'outside-only' });
     const w = dom.window;
     const seen = [];
     let posted = 0;

@@ -1,43 +1,68 @@
 # Seerr No-Confirm Request
 
-A Violentmonkey userscript for Firefox. You click a poster's existing **Request** button once, and the request goes in without the confirmation dialog.
+[![CI](https://github.com/StarlightDaemon/seerr-no-confirm-request/actions/workflows/ci.yml/badge.svg)](https://github.com/StarlightDaemon/seerr-no-confirm-request/actions/workflows/ci.yml)
+[![Latest release](https://img.shields.io/github/v/release/StarlightDaemon/seerr-no-confirm-request)](https://github.com/StarlightDaemon/seerr-no-confirm-request/releases/latest)
+[![License: MIT](https://img.shields.io/github/license/StarlightDaemon/seerr-no-confirm-request)](LICENSE)
 
-- **Movies:** submitted with Seerr's defaults.
-- **Series:** all aired seasons are requested when there are 5 or fewer. Bigger shows open the native season dialog.
+A userscript for [Seerr](https://github.com/seerr-team/seerr). Click a poster's **Request** button once and the request goes in, with no confirmation dialog.
+
+- **Movies** are submitted with Seerr's defaults.
+- **Series** request all aired seasons when there are 5 or fewer. Bigger shows open the native season dialog.
 - **Shift + Click** always opens Seerr's native dialog.
 - **Collections** keep their native workflow.
-- **Status:** 0.2.2. Movies were checked live on 0.1.0; series and the version guard are tested on the mock only so far.
+- Seerr still enforces permissions, quotas, approvals and duplicate checks, exactly as for a native request.
 
-## Compatibility
+**Contents:** [Requirements](#requirements) · [Install](#install) · [Set your Seerr address](#set-your-seerr-address) · [Updates](#updates) · [How it works](#how-it-works) · [Configuration](#configuration) · [Known limitations](#known-limitations) · [Rollback](#rollback) · [Development](#development)
+
+## Requirements
 
 | Item | Value |
 |---|---|
-| Seerr | 3.5.x (verified against upstream v3.5.2 source; other versions make the script stand down) |
-| Origin | `http://192.168.1.229:5055` (hard-coded in `@match` and `CONFIG.origin`) |
-| Browser | Firefox with Violentmonkey |
-| Permissions | `@grant none`; the page makes no requests outside Seerr (Violentmonkey itself checks GitHub for updates) |
+| Seerr | 3.5.x, on any address (verified against upstream v3.5.2 source; other versions make the script stand down) |
+| Browser | Firefox |
+| Userscript manager | [Violentmonkey](https://violentmonkey.github.io/) (the one this is tested with) |
+| Permissions | `@grant none`; the page makes no requests outside Seerr (the manager itself checks GitHub for updates) |
+| Status | Movies checked live on 0.1.0. Series and the version guard are tested on a mock page only so far (see [Acceptance tests](docs/ACCEPTANCE-TESTS.md)) |
 
 ## Install
 
-1. Install Violentmonkey in Firefox. If you installed the old **Seerr Quick Request** (0.2.0 or earlier), delete it in Violentmonkey first: the name changed, so a fresh install from the new URL may otherwise appear as a second script.
-2. Open <https://github.com/StarlightDaemon/seerr-no-confirm-request/releases/latest/download/seerr-no-confirm-request.user.js>. Violentmonkey offers to install it; confirm.
+Remove any old **Seerr Quick Request** script first (0.2.0 or earlier). The name changed, so it would otherwise show up as a second script, and it no longer updates.
+
+**Option A: one-click install (gets updates).** Open the link below. Your userscript manager should offer to install it; confirm.
+
+<https://github.com/StarlightDaemon/seerr-no-confirm-request/releases/latest/download/seerr-no-confirm-request.user.js>
+
+**Option B: copy and paste.** Use this if your browser or an add-on (an ad blocker with a userscript feature, for example) treats `.user.js` links as installs and you would rather read the code first.
+
+1. Open the file as plain text on GitHub: <https://github.com/StarlightDaemon/seerr-no-confirm-request/blob/main/seerr-no-confirm-request.user.js>
+2. Click **Copy raw file** (the copy icon above the code).
+3. In your userscript manager, create a new script, replace its contents with what you copied, and save.
+
+A pasted copy only updates when you paste a newer one. Delete it before switching to Option A.
+
+## Set your Seerr address
+
+The script does not know where your Seerr lives, so it ships with Seerr's default address, `http://localhost:5055/*`, as a placeholder. Tell your userscript manager your real address once:
+
+1. Open the script's **Settings** in the manager (in Violentmonkey: dashboard, then the script's edit button, then **Settings**).
+2. Under **Custom match** (Violentmonkey labels it **Custom @match**), add your address ending in `/*`, for example `http://192.168.1.50:5055/*` or `https://seerr.example.com/*`. Use the exact scheme, host and port you type in the browser.
 3. Reload Seerr.
 
-If you previously pasted the script in by hand, delete that copy first. Only an install from the release URL picks up updates.
+This override is kept across script updates. Do not edit the `@match` line in the script itself, because an update would overwrite it. If the script never seems to run, a wrong Custom match is the usual cause.
 
-### Updates
+## Updates
 
-Violentmonkey checks the latest GitHub release and updates when `@version` increases. To check now, open the dashboard and choose **Check for updates**. To pin a version, turn off updates for the script in its settings.
+For Option A installs, the manager checks the latest GitHub release and updates when `@version` increases. To check now, use **Check for updates** in the dashboard. To pin a version, turn off updates for the script in its settings.
 
 ## How it works
 
-- **Version guard.** On each full page load, the script makes one `GET /api/v1/status` call. If the version doesn't match `CONFIG.testedVersion` (3.5.x) or can't be read, the script stands down and every click behaves natively. It shows one notice per browser session.
+- **Version guard.** On each full page load, the script makes one `GET /api/v1/status` call. If the version doesn't match `CONFIG.testedVersion` (3.5.x) or can't be read, the script stands down and every click behaves natively. It shows one notice per browser session. This is also what keeps it harmless on a page that isn't Seerr.
 - **Interception.** A capture-phase click listener runs before React. It acts only when the click is on the single button that follows a `/movie/{id}` or `/tv/{id}` link inside `[data-testid="title-card"]`. Everything else is left to Seerr: collections, the watchlist and hide buttons, modifier keys, and any unexpected structure.
 - **Movies.** It sends `POST /api/v1/request` with `{mediaType:"movie", mediaId, is4k:false}`.
 - **Series.** It sends `GET /api/v1/tv/{id}` and counts aired seasons, leaving out specials and empty seasons. This matches the rule the server uses for `"all"`.
   - **Up to `CONFIG.tv.maxSeasons` (5):** it sends `POST /api/v1/request` with `{mediaType:"tv", mediaId, seasons:"all", is4k:false}`. The server skips seasons that are already requested or available.
   - **More than 5, none aired yet, or the lookup fails:** the script re-clicks the button so Seerr's native season dialog opens.
-- **Server-side handling.** Requests go out same-origin with your existing login session. Seerr applies the default Radarr or Sonarr, its profile, folder and tags, and any override rules, the same as a native request. Quotas, permissions, approvals and duplicate checks stay enforced on the server.
+- **Server-side handling.** Requests go out same-origin with your existing login session. Seerr applies the default Radarr or Sonarr, its profile, folder and tags, and any override rules, the same as a native request.
 - **CSRF.** If CSRF protection is on, the script copies the `XSRF-TOKEN` cookie into the `X-XSRF-TOKEN` header.
 - **Card state.** One CSS rule per title shows *Requesting… / Requested / Pending approval / Already requested*. After a reload, Seerr's own status badge takes over.
 - **Toasts.** Identical toasts merge into one with a repeat count, and no more than 4 show at once.
@@ -57,28 +82,9 @@ The script never reports success unless it gets a 201 with a request body back.
 
 ## Configuration
 
-Settings are in the `CONFIG` block at the top of the script: `origin`, `testedVersion`, `tv.enabled`, `tv.maxSeasons` and `debug`. If you change `origin`, change the `@match` line to the same value.
+Behaviour settings are in the `CONFIG` block at the top of the script: `testedVersion`, `tv.enabled`, `tv.maxSeasons` and `debug`. Editing the script is overwritten by an update, so re-apply your changes afterwards, or turn off updates for the script. The Seerr address is **not** set here; see [Set your Seerr address](#set-your-seerr-address).
 
-## Acceptance tests (operator-run)
-
-| # | Test | Expected result |
-|---|---|---|
-| 1 | Click Request on an unrequested movie | One request in Requests, routed to the default Radarr |
-| 2 | Click 5× fast | Exactly one request; one toast with a count |
-| 3 | Hover the same card again | Button reads *Requested*; clicking sends nothing |
-| 4 | Movie already requested by another user | No duplicate; *Already requested* |
-| 5 | Available movie or series | No Request button, as natively |
-| 6 | Series with ≤5 aired seasons | One request covering all aired seasons, sent to the default Sonarr |
-| 7 | Series with >5 aired seasons | Native season dialog opens; nothing sent |
-| 8 | Shift + Click on a movie, then a series | Native dialogs |
-| 9 | Collection card | Native collection dialog |
-| 10 | Log out in another tab, then click | "Session expired"; nothing claimed |
-| 11 | Non-auto-approve user | *Pending approval*; request waits for approval |
-| 12 | Discover, search, and genre pages after client-side navigation | Works on all of them |
-| 13 | Reload after requesting | Seerr's native status badge shows |
-| 14 | Radarr / Sonarr | Title added with the configured profiles (Radarr's trickle-down sizing intact) |
-| 15 | Set `testedVersion` to a non-matching value, then reload | "Paused" notice; native two-step behaviour |
-| 16 | Script disabled, then reload | Native two-step behaviour returns |
+Set `CONFIG.debug = true` to log decisions and HTTP status codes to the browser console. Cookies, headers and tokens are never logged.
 
 ## Known limitations
 
@@ -90,24 +96,20 @@ Settings are in the `CONFIG` block at the top of the script: `origin`, `testedVe
 - The selectors depend on the v3.5.2 `TitleCard` structure. If an upgrade changes it, the script stops intercepting and Seerr behaves natively. It does not fail toward wrong requests.
 - Seerr upgrades outside 3.5.x pause the script until `testedVersion` is widened after re-verification.
 
-## Diagnostics
-
-Set `CONFIG.debug = true` to log decisions and HTTP status codes to the console. Cookies, headers and tokens are never logged.
-
-`tools/probe.js` is a read-only console snippet. It reports version, CSRF setting, quotas, Radarr and Sonarr defaults, override-rule counts and user permissions, and prints no API keys.
-
-`test/mock-dom.test.js` checks the script against a mock v3.5.2 card structure:
-`npm i jsdom && node test/mock-dom.test.js seerr-no-confirm-request.user.js`
-
-## Upgrading Seerr
-
-After a Seerr upgrade outside 3.5.x, the script pauses itself. To re-enable it:
-
-1. Diff these files against v3.5.2: `src/components/TitleCard/index.tsx`, `server/routes/request.ts`, `server/entity/MediaRequest.ts` and `server/models/Tv.ts`.
-2. Run the mock tests.
-3. Widen `testedVersion` and bump the script version.
-4. Run acceptance tests 1, 6, 7 and 8.
-
 ## Rollback
 
-In Violentmonkey, disable or delete **Seerr No-Confirm Request** (formerly Seerr Quick Request), then reload Seerr. Requests that were already submitted remain, and are handled by Seerr and Radarr as usual.
+In your userscript manager, disable or delete **Seerr No-Confirm Request** (formerly Seerr Quick Request), then reload Seerr. Requests that were already submitted remain, and are handled by Seerr and Radarr as usual.
+
+## Development
+
+- **Tests:** `npm ci && npm test` runs the mock-DOM suite against a mock v3.5.2 card structure. CI runs it on every push.
+- **Acceptance tests:** [docs/ACCEPTANCE-TESTS.md](docs/ACCEPTANCE-TESTS.md) lists the manual checks to run against a live Seerr. [docs/LOOP-001-live-test-checklist.md](docs/LOOP-001-live-test-checklist.md) is a guided run of the ones not yet verified live.
+- **Probe:** `tools/probe.js` is a read-only console snippet. Paste it into the browser console on your Seerr while logged in as an admin. It reports version, CSRF setting, quotas, Radarr and Sonarr defaults, override-rule counts and user permissions, and prints no API keys.
+- **Upgrading for a new Seerr version.** After a Seerr upgrade outside 3.5.x the script pauses itself. To re-enable it:
+  1. Diff these files against v3.5.2: `src/components/TitleCard/index.tsx`, `server/routes/request.ts`, `server/entity/MediaRequest.ts` and `server/models/Tv.ts`.
+  2. Run the mock tests.
+  3. Widen `testedVersion` and bump the script version.
+  4. Run acceptance tests 1, 6, 7 and 8.
+- **Releases:** attach only `seerr-no-confirm-request.user.js` (the file name the update links point to). Keep the version in the script, `package.json` and `CHANGELOG.md` identical; CI checks this.
+
+See [CHANGELOG.md](CHANGELOG.md) for release notes. Licensed under the [MIT License](LICENSE).

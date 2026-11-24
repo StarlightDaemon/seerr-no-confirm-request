@@ -1,8 +1,10 @@
 # Changelog
 
-## Unreleased
+## 0.3.0 — 2026-11-23
 
-- Release housekeeping, no change to the script: the v0.2.0 and v0.2.1 GitHub releases were deleted (git tags kept) and the legacy `seerr-quick-request.user.js` asset was removed from v0.2.2. Installs from 0.2.0 or earlier no longer update; delete them and reinstall from the new URL. Dev dependency `jsdom` bumped to 31.
+- **No hard-coded server address.** The script no longer has an origin setting or the author's address in `@match`. It ships with Seerr's default `http://localhost:5055/*` as a placeholder, and you set your own server under the script's **Settings > Custom match** in your userscript manager. That override survives updates. **After updating from 0.2.x you must set Custom match once**, or the script will not run on your server.
+- Install by copy-paste is documented for browsers or add-ons that intercept `.user.js` links, and the README is reorganised.
+- Release housekeeping: the v0.2.0 and v0.2.1 GitHub releases were deleted (git tags kept) and the legacy `seerr-quick-request.user.js` asset was removed from v0.2.2. Installs from 0.2.0 or earlier no longer update; delete them and reinstall from the new URL. Dev dependency `jsdom` bumped to 31.
 
 ## 0.2.2 — 2026-11-23
 

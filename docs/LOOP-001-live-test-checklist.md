@@ -1,12 +1,13 @@
-# LOOP-001: live acceptance checklist (Seerr No-Confirm Request 0.2.2)
+# LOOP-001: live acceptance checklist (Seerr No-Confirm Request 0.3.0)
 
-Run against the live Seerr at http://192.168.1.229:5055 in Firefox with Violentmonkey. These are the README acceptance tests that were only verified on the mock DOM: **6, 7, 8 and 10 to 16**. Tests 1 to 5 and 9 were checked live on 0.1.0; re-run them if you want a full pass.
+Run against your live Seerr in Firefox with a userscript manager. These are the acceptance tests (see `ACCEPTANCE-TESTS.md`) that were only verified on the mock DOM: **6, 7, 8 and 10 to 16**. Tests 1 to 5 and 9 were checked live on 0.1.0; re-run them if you want a full pass.
 
 Record results in the Result column. When all pass, tell the agent so LOOP-001 can be closed in `.raiden/state/OPEN_LOOPS.md`.
 
 ## Before you start
 
-- [ ] Installed script is **0.2.2**: Violentmonkey dashboard, script name "Seerr No-Confirm Request", version 0.2.2. If it shows 0.2.0 or two copies exist, see LOOP-004 first.
+- [ ] Installed script is **0.3.0**: in the userscript manager, script name "Seerr No-Confirm Request", version 0.3.0. If an old "Seerr Quick Request" copy or two copies exist, delete them and reinstall using the README.
+- [ ] **Custom match** is set to your Seerr address (Settings tab of the script), for example `https://seerr.example.com/*`. Without it the script does not run on your server.
 - [ ] Logged in to Seerr as an **admin** (auto-approve). Test 11 needs a second, non-auto-approve user.
 - [ ] Pick **throwaway titles** you are happy to request, because tests 6 and 14 create real Sonarr/Radarr entries. You will delete them afterwards.
   - Series A: 5 or fewer aired seasons, not yet requested.
@@ -34,7 +35,7 @@ Record results in the Result column. When all pass, tell the agent so LOOP-001 c
 
 - [ ] Delete or unmonitor the throwaway series and movies in Sonarr and Radarr, and delete the test requests in Seerr.
 - [ ] `testedVersion` is back to `3.5.x` and `CONFIG.debug` is `false`.
-- [ ] Script is enabled and still shows version 0.2.2.
+- [ ] Script is enabled and still shows version 0.3.0, with Custom match intact.
 - [ ] Log back in on the admin account if test 10 logged you out.
 
 ## If something fails
