@@ -36,5 +36,5 @@
 - One-click movie requests from poster cards; Shift/Ctrl/Alt/Meta-click and non-movie cards fall through to native Seerr.
 - In-flight and post-request guards; CSS-only card state; toasts for 201/409/401/403/other.
 - CSRF header forwarding when Seerr's CSRF protection is on.
-- Targets Seerr v3.5.2 at `http://192.168.1.229:5055`.
+- Targets Seerr v3.5.2 (the author's homelab address was hard-coded in this release).
 - Verified only against a mock DOM (jsdom); live acceptance testing pending.
