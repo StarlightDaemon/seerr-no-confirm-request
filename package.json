@@ -1,0 +1,13 @@
+{
+  "name": "seerr-quick-request",
+  "version": "0.2.0",
+  "private": true,
+  "license": "MIT",
+  "description": "One-click movie and series requests for Seerr (Violentmonkey userscript)",
+  "scripts": {
+    "test": "node test/mock-dom.test.js seerr-quick-request.user.js"
+  },
+  "devDependencies": {
+    "jsdom": "^24.1.3"
+  }
+}

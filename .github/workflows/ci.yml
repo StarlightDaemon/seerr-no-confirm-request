@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: lts/*
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: node --check seerr-quick-request.user.js
+      - run: node --check tools/probe.js
+      - name: Version consistency
+        run: |
+          script=$(sed -n 's|^// @version[[:space:]]*\([0-9][^[:space:]]*\).*|\1|p' seerr-quick-request.user.js | head -n1)
+          pkg=$(node -p "require('./package.json').version")
+          log=$(sed -n 's|^## \([0-9][0-9.]*\).*|\1|p' CHANGELOG.md | head -n1)
+          echo "userscript=$script package.json=$pkg changelog=$log"
+          [ -n "$script" ] && [ "$script" = "$pkg" ] && [ "$pkg" = "$log" ]
