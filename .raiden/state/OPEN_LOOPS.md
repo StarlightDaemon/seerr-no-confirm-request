@@ -20,3 +20,10 @@ Re-verify the selectors and API contract and widen `CONFIG.testedVersion` when S
 
 - Status: open
 - Gate: upstream
+
+## LOOP-004 - Userscript rename and update channel
+
+Decide how the userscript adopts the new name: @name and @namespace (changing either makes Violentmonkey treat it as a new script, not an update), the asset file name (the 0.2.0 @updateURL asks for seerr-quick-request.user.js), and the in-repo URLs and README. A new release is needed to carry any of this.
+
+- Status: open
+- Gate: operator
