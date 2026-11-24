@@ -2,7 +2,7 @@
 
 ## LOOP-001 - Operator live acceptance tests
 
-Run README acceptance tests 6, 7, 8 and 10-16 on the current release (0.2.2) against the live Seerr. Series one-click and the version guard have only been verified against the mock DOM.
+Run README acceptance tests 6, 7, 8 and 10-16 on the current release (0.2.2) against the live Seerr. Step-by-step checklist: `docs/LOOP-001-live-test-checklist.md`. Series one-click and the version guard have only been verified against the mock DOM.
 
 - Status: open
 - Gate: operator
