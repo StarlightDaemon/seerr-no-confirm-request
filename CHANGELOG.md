@@ -2,7 +2,7 @@
 
 ## 0.2.1 — 2026-11-23
 
-- Renamed the project to Seerr No-Confirm Request: new `@name`, repository (StarlightDaemon/seerr-no-confirm-request), script file name (`seerr-no-confirm-request.user.js`) and update URLs. `@namespace` is unchanged. No behaviour change.
+- Renamed the project to Seerr No-Confirm Request: new `@name`, repository (StarlightDaemon/seerr-no-confirm-request), script file name (`seerr-no-confirm-request.user.js`) and update URLs. `@namespace` is unchanged. No behaviour change. Reason: the old name scored lowest in a conflict review against existing tooling (0/10), and its acronym, SQR, 1/10.
 - Releases also carry a copy named `seerr-quick-request.user.js` so installs of 0.2.0 and earlier, whose update URL uses the old file name, receive this update.
 
 ## 0.2.0 — 2026-11-23

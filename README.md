@@ -19,7 +19,7 @@ A Violentmonkey userscript for Firefox. You click a poster's existing **Request*
 
 ## Install
 
-1. Install Violentmonkey in Firefox.
+1. Install Violentmonkey in Firefox. If you installed the old **Seerr Quick Request** (0.2.0 or earlier), delete it in Violentmonkey first: the name changed, so a fresh install from the new URL may otherwise appear as a second script.
 2. Open <https://github.com/StarlightDaemon/seerr-no-confirm-request/releases/latest/download/seerr-no-confirm-request.user.js>. Violentmonkey offers to install it; confirm.
 3. Reload Seerr.
 

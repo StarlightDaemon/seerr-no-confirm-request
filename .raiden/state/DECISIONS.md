@@ -33,3 +33,7 @@ The project is renamed Seerr No-Confirm Request (operator direction). GitHub rep
 ## 2026-11-23 - Userscript renamed in 0.2.1
 
 New @name, file name and update URLs. @namespace is unchanged. Releases keep a second asset named seerr-quick-request.user.js (identical bytes) because 0.2.0 installs ask for that name. Internal DOM ids and the sessionStorage key still use seerr-quick-request; they are not user-facing and the tests assert them.
+
+## 2026-11-23 - Naming rationale
+
+The name Seerr Quick Request scored lowest in a conflict review against existing tooling (0/10), and its acronym, SQR, 1/10. Seerr No-Confirm Request is the current top choice. It also says what the script does: it removes the confirmation dialog.
