@@ -9,9 +9,9 @@ Run README acceptance tests 6, 7, 8 and 10-16 on the current release (0.3.0 once
 
 ## LOOP-002 - Branch protection decision
 
-Decide whether `main` gets branch protection or a ruleset. Not configured; repository settings were left at defaults on creation.
+Decided 2026-11-23: no branch protection or ruleset. The operator is the only collaborator, there are no forks, and outside contributors cannot push to `main` without write access (a pull request would need the operator to merge it). Revisit if collaborators are added.
 
-- Status: open
+- Status: closed
 - Gate: operator
 
 ## LOOP-003 - Re-verify when Seerr leaves 3.5.x

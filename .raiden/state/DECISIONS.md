@@ -42,6 +42,10 @@ Operator direction: delete the v0.2.0 and v0.2.1 GitHub releases and remove the 
 
 Removed `CONFIG.origin` and the origin check. `@match` ships as the placeholder `http://localhost:5055/*` (Seerr's default port) and users set their own address with the userscript manager's Custom match override, which survives updates (edits to the script do not). A broad `@match` was rejected: it would run on every site and call `/api/v1/status` on each. The `/api/v1/status` version guard remains the check that the page really is a supported Seerr. Old Git history still contains the author's private LAN address; history was not rewritten.
 
+## 2026-11-23 - No branch protection on main
+
+Operator decision (closes LOOP-002): leave `main` unprotected. Sole collaborator, no forks, no outside write access. Revisit if collaborators are added.
+
 ## 2026-11-23 - Naming rationale
 
 The name Seerr Quick Request scored lowest in a conflict review against existing tooling (0/10), and its acronym, SQR, 1/10. Seerr No-Confirm Request is the current top choice. It also says what the script does: it removes the confirmation dialog.
