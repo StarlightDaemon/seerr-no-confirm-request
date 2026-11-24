@@ -8,6 +8,6 @@
     "test": "node test/mock-dom.test.js seerr-no-confirm-request.user.js"
   },
   "devDependencies": {
-    "jsdom": "^24.1.3"
+    "jsdom": "^31.0.1"
   }
 }
