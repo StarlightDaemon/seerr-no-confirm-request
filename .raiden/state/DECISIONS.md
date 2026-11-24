@@ -32,7 +32,7 @@ The project is renamed Seerr No-Confirm Request (operator direction). GitHub rep
 
 ## 2026-11-23 - Userscript renamed in 0.2.1
 
-New @name, file name and update URLs. @namespace is unchanged. Releases keep a second asset named seerr-quick-request.user.js (identical bytes) because 0.2.0 installs ask for that name. Internal DOM ids and the sessionStorage key still use seerr-quick-request; they are not user-facing and the tests assert them.
+New @name, file name and update URLs. @namespace is unchanged. Releases keep a second asset named seerr-quick-request.user.js (identical bytes) because 0.2.0 installs ask for that name. Internal DOM ids and the sessionStorage key still used seerr-quick-request in 0.2.1; 0.2.2 renamed them to seerr-no-confirm-request (the tests assert the new ids).
 
 ## 2026-11-23 - Naming rationale
 
