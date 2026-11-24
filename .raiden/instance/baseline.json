@@ -1,0 +1,36 @@
+{
+  "installed_edict_version": "2.1.0",
+  "installed_at": "2026-11-24T01:57:47.398986+00:00",
+  "managed_files": [
+    {
+      "path": "README.md",
+      "hash": "22b738fdd88fd8fd3d3048149c395d3580c27de198a3e0714d11b81e5e38c150"
+    },
+    {
+      "path": "OPERATING_RULES.md",
+      "hash": "bdbb6cfb9c8a39d69b98ed68920dc5f2faec5ed32b249480c828fd98e23373ec"
+    },
+    {
+      "path": "ROUTING_POLICY.md",
+      "hash": "972c3cbaa9b40ff9e43fc1857ba4f274ad7b52aa21416ed50e28d8811b3fb800"
+    },
+    {
+      "path": "WORKSPACE_AUDIT_PROTOCOL.md",
+      "hash": "e7c5a8b71aa06ef3bf565c03c3d3c391b7613a90c5cd0beef3e8a02aea0955a4"
+    },
+    {
+      "path": "FORK_REVIEW_PROTOCOL.md",
+      "hash": "651d5de656b2755f156f6eed524a44e70b18048262bd685c6b1a440bb96f2d04"
+    },
+    {
+      "path": "AGENTS.md",
+      "hash": "25328cc8866b37e06fc8b2ff07c44877369caa1f8950771a6d2cd88ad39176d0"
+    }
+  ],
+  "hook_files": [
+    {
+      "path": "hooks/commit-msg",
+      "hash": "6588102c21e534d202afc522f057c839143486239a9d436e384ea697c9c13556"
+    }
+  ]
+}
