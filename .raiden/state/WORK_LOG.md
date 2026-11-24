@@ -2,4 +2,5 @@
 
 ## 2026-11-23
 
-- Repository bootstrapped from the verified 0.2.0 source bundle. RAIDEN Edict 2.1.0 installed with the updater (plan: up to date). CI workflow added. Not yet pushed or released at the time of this entry.
+- Repository bootstrapped from the verified 0.2.0 source bundle. RAIDEN Edict 2.1.0 installed with the updater (plan: up to date). CI workflow added.
+- Pushed main (af3db92), CI passed, tagged v0.2.0 and published GitHub release v0.2.0 with seerr-quick-request.user.js attached.
