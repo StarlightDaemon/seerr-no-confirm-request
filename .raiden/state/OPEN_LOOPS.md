@@ -23,7 +23,7 @@ Re-verify the selectors and API contract and widen `CONFIG.testedVersion` when S
 
 ## LOOP-004 - Userscript rename and update channel
 
-Decide how the userscript adopts the new name: @name and @namespace (changing either makes Violentmonkey treat it as a new script, not an update), the asset file name (the 0.2.0 @updateURL asks for seerr-quick-request.user.js), and the in-repo URLs and README. A new release is needed to carry any of this.
+Decided 2026-11-23: full rename shipped in 0.2.1 (new name, asset and URLs, @namespace kept, legacy asset name kept on every release). Open: the operator confirms an installed 0.2.0 updates in place to 0.2.1, and the legacy seerr-quick-request.user.js asset can stop shipping once no install uses the old URL.
 
 - Status: open
 - Gate: operator

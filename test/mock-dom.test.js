@@ -1,10 +1,10 @@
-// Mock-DOM tests for seerr-quick-request.user.js. Card structure mirrors Seerr v3.5.2 TitleCard.
-// Run: npm i jsdom && node test/mock-dom.test.js seerr-quick-request.user.js
+// Mock-DOM tests for seerr-no-confirm-request.user.js. Card structure mirrors Seerr v3.5.2 TitleCard.
+// Run: npm i jsdom && node test/mock-dom.test.js seerr-no-confirm-request.user.js
 const { JSDOM } = require('jsdom');
 const fs = require('fs');
 const assert = require('assert');
 
-const SCRIPT = fs.readFileSync(process.argv[2] || 'seerr-quick-request.user.js', 'utf8');
+const SCRIPT = fs.readFileSync(process.argv[2] || 'seerr-no-confirm-request.user.js', 'utf8');
 
 function card(type, id) {
   return `

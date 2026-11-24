@@ -29,3 +29,7 @@ Scope is limited to the one-click request feature (operator direction).
 ## 2026-11-23 - Rename to Seerr No-Confirm Request
 
 The project is renamed Seerr No-Confirm Request (operator direction). GitHub repository is now StarlightDaemon/seerr-no-confirm-request (GitHub redirects the old URLs), the workspace is E:\SNCR and the checkout is E:\SNCR\development\seerr-no-confirm-request-source. The userscript's own name, namespace, file name and update URLs still use the old name in v0.2.0; changing them affects Violentmonkey update continuity and is held for a separate decision (see OPEN_LOOPS).
+
+## 2026-11-23 - Userscript renamed in 0.2.1
+
+New @name, file name and update URLs. @namespace is unchanged. Releases keep a second asset named seerr-quick-request.user.js (identical bytes) because 0.2.0 installs ask for that name. Internal DOM ids and the sessionStorage key still use seerr-quick-request; they are not user-facing and the tests assert them.

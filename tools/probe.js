@@ -1,4 +1,4 @@
-// Seerr Quick Request — read-only environment probe.
+// Seerr No-Confirm Request — read-only environment probe.
 // Paste into the Firefox console on http://192.168.1.229:5055 while logged in as an admin.
 // Only GET requests. Prints no API keys, cookies or tokens.
 (async () => {

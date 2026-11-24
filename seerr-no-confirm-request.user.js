@@ -1,17 +1,17 @@
 // ==UserScript==
-// @name         Seerr Quick Request
+// @name         Seerr No-Confirm Request
 // @namespace    skynet.homelab
-// @version      0.2.0
+// @version      0.2.1
 // @description  One-click movie and series requests from Seerr poster cards. Shift+Click opens the native dialog.
 // @match        http://192.168.1.229:5055/*
 // @grant        none
 // @inject-into  page
 // @run-at       document-start
 // @noframes
-// @homepageURL  https://github.com/StarlightDaemon/seerr-quick-request
-// @supportURL   https://github.com/StarlightDaemon/seerr-quick-request/issues
-// @updateURL    https://github.com/StarlightDaemon/seerr-quick-request/releases/latest/download/seerr-quick-request.user.js
-// @downloadURL  https://github.com/StarlightDaemon/seerr-quick-request/releases/latest/download/seerr-quick-request.user.js
+// @homepageURL  https://github.com/StarlightDaemon/seerr-no-confirm-request
+// @supportURL   https://github.com/StarlightDaemon/seerr-no-confirm-request/issues
+// @updateURL    https://github.com/StarlightDaemon/seerr-no-confirm-request/releases/latest/download/seerr-no-confirm-request.user.js
+// @downloadURL  https://github.com/StarlightDaemon/seerr-no-confirm-request/releases/latest/download/seerr-no-confirm-request.user.js
 // ==/UserScript==
 
 /*
@@ -58,7 +58,7 @@
   if (location.origin !== CONFIG.origin) return;
 
   const log = (...args) => {
-    if (CONFIG.debug) console.debug('[SeerrQuickRequest]', ...args);
+    if (CONFIG.debug) console.debug('[SeerrNoConfirmRequest]', ...args);
   };
 
   // 'pending' until the version check answers; clicks stay native unless 'ok'.
@@ -82,7 +82,7 @@
       /* storage unavailable: show the notice anyway */
     }
     whenBodyReady(() =>
-      toast(`Seerr Quick Request paused: ${reason}. Native requests work as normal.`, 'info')
+      toast(`Seerr No-Confirm Request paused: ${reason}. Native requests work as normal.`, 'info')
     );
   }
 

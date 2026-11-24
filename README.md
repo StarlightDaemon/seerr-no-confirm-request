@@ -1,4 +1,4 @@
-# Seerr Quick Request
+# Seerr No-Confirm Request
 
 A Violentmonkey userscript for Firefox. You click a poster's existing **Request** button once, and the request goes in without the confirmation dialog.
 
@@ -6,7 +6,7 @@ A Violentmonkey userscript for Firefox. You click a poster's existing **Request*
 - **Series:** all aired seasons are requested when there are 5 or fewer. Bigger shows open the native season dialog.
 - **Shift + Click** always opens Seerr's native dialog.
 - **Collections** keep their native workflow.
-- **Status:** 0.2.0. Movies were checked live on 0.1.0; series and the version guard are tested on the mock only so far.
+- **Status:** 0.2.1. Movies were checked live on 0.1.0; series and the version guard are tested on the mock only so far.
 
 ## Compatibility
 
@@ -20,7 +20,7 @@ A Violentmonkey userscript for Firefox. You click a poster's existing **Request*
 ## Install
 
 1. Install Violentmonkey in Firefox.
-2. Open <https://github.com/StarlightDaemon/seerr-quick-request/releases/latest/download/seerr-quick-request.user.js>. Violentmonkey offers to install it; confirm.
+2. Open <https://github.com/StarlightDaemon/seerr-no-confirm-request/releases/latest/download/seerr-no-confirm-request.user.js>. Violentmonkey offers to install it; confirm.
 3. Reload Seerr.
 
 If you previously pasted the script in by hand, delete that copy first. Only an install from the release URL picks up updates.
@@ -97,7 +97,7 @@ Set `CONFIG.debug = true` to log decisions and HTTP status codes to the console.
 `tools/probe.js` is a read-only console snippet. It reports version, CSRF setting, quotas, Radarr and Sonarr defaults, override-rule counts and user permissions, and prints no API keys.
 
 `test/mock-dom.test.js` checks the script against a mock v3.5.2 card structure:
-`npm i jsdom && node test/mock-dom.test.js seerr-quick-request.user.js`
+`npm i jsdom && node test/mock-dom.test.js seerr-no-confirm-request.user.js`
 
 ## Upgrading Seerr
 
@@ -110,4 +110,4 @@ After a Seerr upgrade outside 3.5.x, the script pauses itself. To re-enable it:
 
 ## Rollback
 
-In Violentmonkey, disable or delete **Seerr Quick Request**, then reload Seerr. Requests that were already submitted remain, and are handled by Seerr and Radarr as usual.
+In Violentmonkey, disable or delete **Seerr No-Confirm Request** (formerly Seerr Quick Request), then reload Seerr. Requests that were already submitted remain, and are handled by Seerr and Radarr as usual.

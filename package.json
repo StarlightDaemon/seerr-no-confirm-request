@@ -1,11 +1,11 @@
 {
   "name": "seerr-no-confirm-request",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "license": "MIT",
   "description": "One-click movie and series requests for Seerr (Violentmonkey userscript)",
   "scripts": {
-    "test": "node test/mock-dom.test.js seerr-quick-request.user.js"
+    "test": "node test/mock-dom.test.js seerr-no-confirm-request.user.js"
   },
   "devDependencies": {
     "jsdom": "^24.1.3"

@@ -15,7 +15,7 @@ This repo runs a RAIDEN Instance control plane in `.raiden/`.
 - **No `Co-Authored-By` in commits** — the `commit-msg` hook enforces this; do not bypass it
 - **Mainline branch is `main`** — never `master`
 - **D-0016**: on any Writ update — update managed core, preserve local overlay, preserve state, stop and report on locally modified managed files
-- **Do not change `seerr-quick-request.user.js` casually** — its `@updateURL`/`@downloadURL` point at the `latest` release asset, which must be named exactly `seerr-quick-request.user.js`
+- **Do not change `seerr-no-confirm-request.user.js` casually** — its `@updateURL`/`@downloadURL` point at the `latest` release asset, which must be named exactly `seerr-no-confirm-request.user.js`
 
 ## Naming Canon
 
