@@ -6,7 +6,7 @@ A Violentmonkey userscript for Firefox. You click a poster's existing **Request*
 - **Series:** all aired seasons are requested when there are 5 or fewer. Bigger shows open the native season dialog.
 - **Shift + Click** always opens Seerr's native dialog.
 - **Collections** keep their native workflow.
-- **Status:** 0.2.1. Movies were checked live on 0.1.0; series and the version guard are tested on the mock only so far.
+- **Status:** 0.2.2. Movies were checked live on 0.1.0; series and the version guard are tested on the mock only so far.
 
 ## Compatibility
 

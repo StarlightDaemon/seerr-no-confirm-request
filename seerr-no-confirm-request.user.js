@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Seerr No-Confirm Request
 // @namespace    skynet.homelab
-// @version      0.2.1
+// @version      0.2.2
 // @description  One-click movie and series requests from Seerr poster cards. Shift+Click opens the native dialog.
 // @match        http://192.168.1.229:5055/*
 // @grant        none
@@ -74,7 +74,7 @@
   function standDown(reason) {
     guard = 'off';
     log('standing down:', reason);
-    const key = 'seerr-quick-request:paused-notice';
+    const key = 'seerr-no-confirm-request:paused-notice';
     try {
       if (sessionStorage.getItem(key)) return;
       sessionStorage.setItem(key, '1');
@@ -350,7 +350,7 @@
   function renderStyles() {
     if (!styleEl) {
       styleEl = document.createElement('style');
-      styleEl.id = 'seerr-quick-request-style';
+      styleEl.id = 'seerr-no-confirm-request-style';
       (document.head || document.documentElement).appendChild(styleEl);
     }
     let css = '';
@@ -381,7 +381,7 @@
   function toast(text, kind) {
     if (!toastHost) {
       toastHost = document.createElement('div');
-      toastHost.id = 'seerr-quick-request-toasts';
+      toastHost.id = 'seerr-no-confirm-request-toasts';
       toastHost.setAttribute('role', 'status');
       toastHost.setAttribute('aria-live', 'polite');
       toastHost.style.cssText =

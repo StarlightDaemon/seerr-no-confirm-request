@@ -6,7 +6,7 @@ Seerr No-Confirm Request (formerly Seerr Quick Request): a Violentmonkey userscr
 
 ## Status
 
-- Version: 0.2.1
+- Version: 0.2.2
 - Target: Seerr 3.5.x at http://192.168.1.229:5055 (the origin is configuration, not a secret)
 - Release channel: GitHub releases (repository StarlightDaemon/seerr-no-confirm-request). `@updateURL` and `@downloadURL` point at the `latest` release asset `seerr-no-confirm-request.user.js`. Every release must also attach an identical copy named `seerr-quick-request.user.js`, the update URL of installs from 0.2.0 and earlier.
 - Tests: mock-DOM suite, 21 cases, run by `npm test` and by CI.

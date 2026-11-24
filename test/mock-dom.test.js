@@ -74,8 +74,8 @@ function click(w, el, init = {}) {
 }
 const btn = (w, type, id) => w.document.querySelector(`a[href="/${type}/${id}"] + div > button`);
 const tick = (ms = 25) => new Promise((r) => setTimeout(r, ms));
-const toasts = (w) => [...w.document.querySelectorAll('#seerr-quick-request-toasts > div')].map((d) => d.textContent);
-const css = (w) => (w.document.getElementById('seerr-quick-request-style') || {}).textContent || '';
+const toasts = (w) => [...w.document.querySelectorAll('#seerr-no-confirm-request-toasts > div')].map((d) => d.textContent);
+const css = (w) => (w.document.getElementById('seerr-no-confirm-request-style') || {}).textContent || '';
 const ok = (status = 2) => ({ status: 201, body: { id: 9, status } });
 
 const tests = {
@@ -254,7 +254,7 @@ const tests = {
     assert.strictEqual(posts().length, 0);
     assert.strictEqual(reactSeen.length, 1);
     assert.match(toasts(w)[0], /paused: Seerr 3\.6\.0 hasn't been tested/);
-    assert.strictEqual(w.sessionStorage.getItem('seerr-quick-request:paused-notice'), '1');
+    assert.strictEqual(w.sessionStorage.getItem('seerr-no-confirm-request:paused-notice'), '1');
   },
   async 'guard: status failure → native'() {
     const { w, posts, reactSeen } = await setup({ version: new TypeError('down') });

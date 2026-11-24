@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.2 — 2026-11-23
+
+- Finished the rename: the toast container id, style id and sessionStorage key now use the new name (`seerr-no-confirm-request-*`). No behaviour change; the one visible effect is that the once-per-session paused notice can show once more after updating.
+- As in 0.2.1, this release also carries a copy named `seerr-quick-request.user.js` for installs that still use the old update URL.
+
 ## 0.2.1 — 2026-11-23
 
 - Renamed the project to Seerr No-Confirm Request: new `@name`, repository (StarlightDaemon/seerr-no-confirm-request), script file name (`seerr-no-confirm-request.user.js`) and update URLs. `@namespace` is unchanged. No behaviour change. Reason: the old name scored lowest in a conflict review against existing tooling (0/10), and its acronym, SQR, 1/10.
