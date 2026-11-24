@@ -1,0 +1,6 @@
+node_modules/
+# Audit output (vulnerability details): never publish
+.audits/
+audit-reports/
+.raiden/state/AUDIT_LOG.md
+.raiden/state/last-audit.md
