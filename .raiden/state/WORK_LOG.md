@@ -7,3 +7,5 @@
 - Renamed the GitHub repository to seerr-no-confirm-request; local workspace E:\SQR becomes E:\SNCR. Userscript metadata left as released (LOOP-004).
 - Renamed the userscript and cut v0.2.1 (see DECISIONS.md).
 - Renamed the internal ids and cut v0.2.2 (0.2.1 left published as is).
+- Bumped jsdom to 31.0.1 (test-only) and added the LOOP-001 live acceptance checklist under docs/.
+- Deleted the v0.2.0 and v0.2.1 releases (tags kept) and removed the legacy asset from v0.2.2; closed LOOP-004.

@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Release housekeeping, no change to the script: the v0.2.0 and v0.2.1 GitHub releases were deleted (git tags kept) and the legacy `seerr-quick-request.user.js` asset was removed from v0.2.2. Installs from 0.2.0 or earlier no longer update; delete them and reinstall from the new URL. Dev dependency `jsdom` bumped to 31.
+
 ## 0.2.2 — 2026-11-23
 
 - Finished the rename: the toast container id, style id and sessionStorage key now use the new name (`seerr-no-confirm-request-*`). No behaviour change; the one visible effect is that the once-per-session paused notice can show once more after updating.

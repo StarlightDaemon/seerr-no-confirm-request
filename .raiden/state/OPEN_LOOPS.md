@@ -23,7 +23,7 @@ Re-verify the selectors and API contract and widen `CONFIG.testedVersion` when S
 
 ## LOOP-004 - Userscript rename and update channel
 
-Decided 2026-11-23: full rename shipped in 0.2.1 (new name, asset and URLs, @namespace kept, legacy asset name kept on every release). Open: the operator confirms an installed 0.2.0 updates in place to 0.2.1, and the legacy seerr-quick-request.user.js asset can stop shipping once no install uses the old URL.
+Decided 2026-11-23: full rename shipped in 0.2.1 (new name, asset and URLs, @namespace kept). Closed 2026-11-23 by operator decision: the legacy seerr-quick-request.user.js asset was removed from v0.2.2 and the v0.2.0 and v0.2.1 releases were deleted, so the in-place update path from 0.2.0 no longer exists. Any old install must be deleted and reinstalled from the new URL.
 
-- Status: open
+- Status: closed
 - Gate: operator
